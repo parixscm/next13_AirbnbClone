@@ -1,5 +1,11 @@
 import Image from "next/image";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import {
+  MagnifyingGlassIcon,
+  UserIcon,
+  UserCircleIcon,
+  Bars3Icon,
+} from "@heroicons/react/24/solid";
+import { GlobeAltIcon } from "@heroicons/react/24/outline";
 
 function Header() {
   return (
@@ -23,7 +29,16 @@ function Header() {
         />
         <MagnifyingGlassIcon className="hidden p-2 h-8 bg-red-400 text-white rounded-full cursor-pointer md:inline-flex md:mx-2" />
       </div>
+
       {/* Menu */}
+      <div className="flex justify-end items-center space-x-4 text-gray-500">
+        <p className="hidden md:inline cursor-pointer">Become a host</p>
+        <GlobeAltIcon className="h-6 cursor-pointer" />
+        <div className="p-2 flex items-center space-x-2 border-2 rounded-full">
+          <UserCircleIcon className="h-6" />
+          <Bars3Icon className="h-6" />
+        </div>
+      </div>
     </header>
   );
 }

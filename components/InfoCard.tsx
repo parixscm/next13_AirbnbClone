@@ -2,18 +2,6 @@ import Image from "next/image";
 import { HeartIcon } from "@heroicons/react/24/outline";
 import { StarIcon } from "@heroicons/react/24/solid";
 
-type InfoCardProps = {
-  img: string;
-  location: string;
-  title: string;
-  description: string;
-  star: number;
-  price: string;
-  total: string;
-  long: number;
-  lat: number;
-};
-
 function InfoCard({
   img,
   location,

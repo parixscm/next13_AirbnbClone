@@ -26,3 +26,30 @@ type LargeCardProps = {
   description: string;
   buttonText: string;
 };
+
+// /search/page.tsx
+type ParamsProps = {};
+
+type SearchParamsProps = {
+  location: string;
+  startDate: string;
+  endDate: string;
+  numOfGuests: string;
+};
+
+type Props = {
+  params: ParamsProps;
+  searchParams: SearchParamsProps;
+};
+
+type InfoCardProps = {
+  img: string;
+  location: string;
+  title: string;
+  description: string;
+  star: number;
+  price: string;
+  total: string;
+  long: number;
+  lat: number;
+};

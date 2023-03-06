@@ -1,31 +1,6 @@
 import { format } from "date-fns";
+import { getSearchResults } from "../../lib/getData";
 import InfoCard from "../../components/InfoCard";
-
-type ParamsProps = {};
-
-type SearchParamsProps = {
-  location: string;
-  startDate: string;
-  endDate: string;
-  numOfGuests: string;
-};
-
-type Props = {
-  params: ParamsProps;
-  searchParams: SearchParamsProps;
-};
-
-type InfoCardProps = {
-  img: string;
-  location: string;
-  title: string;
-  description: string;
-  star: number;
-  price: string;
-  total: string;
-  long: number;
-  lat: number;
-};
 
 async function SearchPage({ searchParams }: Props) {
   const { location, startDate, endDate, numOfGuests } = searchParams;
@@ -34,9 +9,7 @@ async function SearchPage({ searchParams }: Props) {
   const formattedEndDate = format(new Date(endDate), "dd MMMM yy");
   const range = `${formattedStartDate} - ${formattedEndDate}`;
 
-  const searchResults = await fetch("https://www.jsonkeeper.com/b/5NPS", {
-    next: { revalidate: 10 },
-  }).then(res => res.json());
+  const searchResults: InfoCardProps[] = await getSearchResults();
 
   return (
     <div>
@@ -70,7 +43,7 @@ async function SearchPage({ searchParams }: Props) {
                 total,
                 long,
                 lat,
-              }: InfoCardProps) => (
+              }) => (
                 <InfoCard
                   key={img}
                   img={img}
@@ -87,8 +60,6 @@ async function SearchPage({ searchParams }: Props) {
             )}
           </div>
         </section>
-
-        {/* Map */}
       </main>
     </div>
   );

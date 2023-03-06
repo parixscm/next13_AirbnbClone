@@ -1,4 +1,5 @@
 import { format } from "date-fns";
+import InfoCard from "../../components/InfoCard";
 
 type ParamsProps = {};
 
@@ -14,12 +15,28 @@ type Props = {
   searchParams: SearchParamsProps;
 };
 
+type InfoCardProps = {
+  img: string;
+  location: string;
+  title: string;
+  description: string;
+  star: number;
+  price: string;
+  total: string;
+  long: number;
+  lat: number;
+};
+
 async function SearchPage({ searchParams }: Props) {
   const { location, startDate, endDate, numOfGuests } = searchParams;
   // 포맷팅 이후 날짜
   const formattedStartDate = format(new Date(startDate), "dd MMMM yy");
   const formattedEndDate = format(new Date(endDate), "dd MMMM yy");
   const range = `${formattedStartDate} - ${formattedEndDate}`;
+
+  const searchResults = await fetch("https://www.jsonkeeper.com/b/5NPS", {
+    next: { revalidate: 10 },
+  }).then(res => res.json());
 
   return (
     <div>
@@ -41,6 +58,34 @@ async function SearchPage({ searchParams }: Props) {
           </div>
 
           {/* InfoCard */}
+          <div className="flex flex-col">
+            {searchResults?.map(
+              ({
+                img,
+                location,
+                title,
+                description,
+                star,
+                price,
+                total,
+                long,
+                lat,
+              }: InfoCardProps) => (
+                <InfoCard
+                  key={img}
+                  img={img}
+                  location={location}
+                  title={title}
+                  description={description}
+                  star={star}
+                  price={price}
+                  total={total}
+                  long={long}
+                  lat={lat}
+                />
+              )
+            )}
+          </div>
         </section>
 
         {/* Map */}

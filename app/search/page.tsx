@@ -8,8 +8,10 @@ async function SearchPage({ searchParams }: Props) {
   // 포맷팅 이후 날짜
   const formattedStartDate = startDate
     ? format(new Date(startDate), "MM/dd/yy")
-    : "";
-  const formattedEndDate = endDate ? format(new Date(endDate), "MM/dd/yy") : "";
+    : startDate;
+  const formattedEndDate = endDate
+    ? format(new Date(endDate), "MM/dd/yy")
+    : endDate;
   const range = `${formattedStartDate} - ${formattedEndDate}`;
 
   const searchResults: InfoCardProps[] = await getSearchResults();

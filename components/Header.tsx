@@ -24,8 +24,8 @@ function Header() {
   const [endDate, setEndDate] = useState(new Date());
 
   const selectionRange = {
-    startDate: startDate,
-    endDate: endDate,
+    startDate,
+    endDate,
     key: "selection",
   };
 

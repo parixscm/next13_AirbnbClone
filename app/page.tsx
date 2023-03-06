@@ -1,4 +1,5 @@
 import Banner from "../components/Banner";
+import MediumCard from "../components/MediumCard";
 import SmallCard from "../components/SmallCard";
 
 type nearbyData = {
@@ -7,13 +8,24 @@ type nearbyData = {
   distance: string;
 };
 
+type liveAnywhereData = {
+  img: string;
+  title: string;
+};
+
 async function getNearbyData() {
   const res = await fetch("https://www.jsonkeeper.com/b/4G1G");
   return res.json();
 }
 
+async function getLiveAnywhereData() {
+  const res = await fetch("https://www.jsonkeeper.com/b/VHHT");
+  return res.json();
+}
+
 export default async function HomePage() {
   const nearbyData: nearbyData[] = await getNearbyData();
+  const liveAnywhereData: liveAnywhereData[] = await getLiveAnywhereData();
 
   return (
     <div>
@@ -32,6 +44,18 @@ export default async function HomePage() {
                 location={location}
                 distance={distance}
               />
+            ))}
+          </div>
+        </section>
+
+        {/* Live Anywhere */}
+        <section>
+          <h2 className="py-8 text-3xl font-semibold sm:text-4xl">
+            Live Anywhere
+          </h2>
+          <div className="px-2 flex space-x-3 overflow-scroll">
+            {liveAnywhereData?.map(({ img, title }) => (
+              <MediumCard key={img} img={img} title={title} />
             ))}
           </div>
         </section>

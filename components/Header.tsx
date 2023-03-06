@@ -1,7 +1,6 @@
 import Image from "next/image";
 import {
   MagnifyingGlassIcon,
-  UserIcon,
   UserCircleIcon,
   Bars3Icon,
 } from "@heroicons/react/24/solid";

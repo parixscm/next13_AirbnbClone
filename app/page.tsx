@@ -2,16 +2,7 @@ import Banner from "../components/Banner";
 import LargeCard from "../components/LargeCard";
 import MediumCard from "../components/MediumCard";
 import SmallCard from "../components/SmallCard";
-
-async function getNearbyData() {
-  const res = await fetch("https://www.jsonkeeper.com/b/4G1G");
-  return res.json();
-}
-
-async function getLiveAnywhereData() {
-  const res = await fetch("https://www.jsonkeeper.com/b/VHHT");
-  return res.json();
-}
+import { getLiveAnywhereData, getNearbyData } from "../lib/getData";
 
 export default async function HomePage() {
   const nearbyData: nearbyData[] = await getNearbyData();

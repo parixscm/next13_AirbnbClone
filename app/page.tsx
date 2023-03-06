@@ -1,4 +1,5 @@
 import Banner from "../components/Banner";
+import LargeCard from "../components/LargeCard";
 import MediumCard from "../components/MediumCard";
 import SmallCard from "../components/SmallCard";
 
@@ -59,6 +60,14 @@ export default async function HomePage() {
             ))}
           </div>
         </section>
+
+        {/* Large Card */}
+        <LargeCard
+          img="https://links.papareact.com/4cj"
+          title="The Greatest Outdoors"
+          description="Wishlists curated by Airbnb"
+          buttonText="Get Inspired"
+        />
       </main>
     </div>
   );

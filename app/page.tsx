@@ -53,7 +53,7 @@ export default async function HomePage() {
           <h2 className="py-8 text-3xl font-semibold sm:text-4xl">
             Live Anywhere
           </h2>
-          <div className="px-2 flex space-x-3 overflow-scroll">
+          <div className="p-3 -ml-3 flex space-x-3 overflow-scroll scrollbar-hide">
             {liveAnywhereData?.map(({ img, title }) => (
               <MediumCard key={img} img={img} title={title} />
             ))}

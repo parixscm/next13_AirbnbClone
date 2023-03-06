@@ -1,5 +1,8 @@
 "use client";
+import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   MagnifyingGlassIcon,
   UsersIcon,
@@ -8,11 +11,11 @@ import {
 } from "@heroicons/react/24/solid";
 import { GlobeAltIcon } from "@heroicons/react/24/outline";
 import { DateRangePicker, RangeKeyDict } from "react-date-range";
-import Image from "next/image";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 
 function Header() {
+  const router = useRouter();
   // SearchBar 관련 상태
   const [searchInput, setSearchInput] = useState("");
   const [numOfGuests, setNumOfGuests] = useState(1);
@@ -31,17 +34,23 @@ function Header() {
     setEndDate(selection.endDate!);
   };
 
+  const handleSearch = () => {
+    router.push(
+      `/search?location=${searchInput}&startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}&numOfGuests=${numOfGuests}`
+    );
+  };
+
   return (
     <header className="p-5 grid grid-cols-3 sticky top-0 z-50 bg-white shadow-md md:px-10k">
       {/* Logo */}
-      <div className="h-10 relative my-auto cursor-pointer">
+      <Link href="/" className="h-10 relative my-auto cursor-pointer">
         <Image
           fill
           style={{ objectFit: "contain", objectPosition: "left" }}
           src="https://links.papareact.com/qd3"
           alt="logo"
         />
-      </div>
+      </Link>
 
       {/* Search Bar */}
       <div className="py-2 flex items-center rounded-full md:border-2 md:shadow-sm">
@@ -94,7 +103,9 @@ function Header() {
             >
               Cancel
             </button>
-            <button className="flex-grow text-red-400">Search</button>
+            <button onClick={handleSearch} className="flex-grow text-red-400">
+              Search
+            </button>
           </div>
         </div>
       )}

@@ -3,17 +3,6 @@ import LargeCard from "../components/LargeCard";
 import MediumCard from "../components/MediumCard";
 import SmallCard from "../components/SmallCard";
 
-type nearbyData = {
-  img: string;
-  location: string;
-  distance: string;
-};
-
-type liveAnywhereData = {
-  img: string;
-  title: string;
-};
-
 async function getNearbyData() {
   const res = await fetch("https://www.jsonkeeper.com/b/4G1G");
   return res.json();

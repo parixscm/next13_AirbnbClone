@@ -1,12 +1,5 @@
 import Image from "next/image";
 
-type LargeCardProps = {
-  img: string;
-  title: string;
-  description: string;
-  buttonText: string;
-};
-
 function LargeCard({ img, title, description, buttonText }: LargeCardProps) {
   return (
     <section className="py-16 relative cursor-pointer">

@@ -10,7 +10,7 @@ export async function getLiveAnywhereData() {
 
 export async function getSearchResults() {
   const res = await fetch("https://www.jsonkeeper.com/b/5NPS", {
-    next: { revalidate: 10 },
+    cache: "no-store",
   });
   return res.json();
 }

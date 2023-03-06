@@ -4,9 +4,12 @@ import InfoCard from "../../components/InfoCard";
 
 async function SearchPage({ searchParams }: Props) {
   const { location, startDate, endDate, numOfGuests } = searchParams;
+
   // 포맷팅 이후 날짜
-  const formattedStartDate = format(new Date(startDate), "dd MMMM yy");
-  const formattedEndDate = format(new Date(endDate), "dd MMMM yy");
+  const formattedStartDate = startDate
+    ? format(new Date(startDate), "MM/dd/yy")
+    : "";
+  const formattedEndDate = endDate ? format(new Date(endDate), "MM/dd/yy") : "";
   const range = `${formattedStartDate} - ${formattedEndDate}`;
 
   const searchResults: InfoCardProps[] = await getSearchResults();
